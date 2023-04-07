@@ -35,17 +35,17 @@ pipeline {
             stages {
                 // Config Service Upstream
                 stage('Config Service Upstream') {
-                    script {
-                        if (fileExists(${env.WORKSPACE}+'/api_upstream.d')) {
-                            return true
-                        }else {
-                            return false
-                        }
-                    }
                     steps {
                         echo "Config Service Upstream"
                         sh 'ls'
                         echo "Current workspace is ${env.WORKSPACE}"
+                        script {
+                           if (fileExists(${env.WORKSPACE}+'/api_upstream.d')) {
+                                return true
+                            }else {
+                                return false
+                            }
+                        }
                     }
                 }
 
