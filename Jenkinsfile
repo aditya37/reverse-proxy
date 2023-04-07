@@ -30,5 +30,12 @@ pipeline {
                 }
             }
         }
+        // stage copy upstream
+        stage("Configuring Service Upstream") {
+            echo 'configure upstream'
+        }
+        stage("Configuring Service URL") {
+            echo 'Configuring Service URL'
+        }
     }
 }
