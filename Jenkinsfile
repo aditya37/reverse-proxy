@@ -38,6 +38,7 @@ pipeline {
                     steps {
                         echo "Config Service Upstream"
                         sh 'ls'
+                        echo "Current workspace is ${env.WORKSPACE}"
                     }
                 }
 
