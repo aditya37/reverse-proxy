@@ -33,22 +33,26 @@ pipeline {
         // stage copy upstream & Service URL path
         stage("Configuring File Reverse Proxy") {
             stages {
+                // checking directory api_upstream.d
+                stage('checking directory api_upstream.d') {
+                    steps {
+                        echo "checking directory api_upstream.d"
+                        script {
+                           if (fileExists("${env.WORKSPACE}"+'/api_upstream.d')) {
+                                return true
+                            }else {
+                                error "Folder api_upstream.d not found"
+                            }
+                        }
+                    }
+                }
                 // Config Service Upstream
                 stage('Config Service Upstream') {
                     steps {
                         echo "Config Service Upstream"
                         sh 'ls'
-                        echo "Current workspace is ${env.WORKSPACE}"
-                        script {
-                           if (fileExists("${env.WORKSPACE}"+'/api_upstream.d')) {
-                                echo "Exist"
-                            }else {
-                                return false
-                            }
-                        }
                     }
                 }
-
                 // Config Service URL Path
                 stage('Config Service URL Path') {
                     steps {
