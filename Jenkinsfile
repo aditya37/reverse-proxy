@@ -37,8 +37,10 @@ pipeline {
                 stage('Config Service Upstream') {
                     steps {
                         echo "Config Service Upstream"
+                        sh 'ls'
                     }
                 }
+
                 // Config Service URL Path
                 stage('Config Service URL Path') {
                     steps {
@@ -47,13 +49,17 @@ pipeline {
                 }
             }
         }
+        // Testing Reverse Proxy Config
         stage("Testing Reverse Proxy Config") {
             steps {
+                echo 'Checking config reverse proxy'
                 sh '/usr/sbin/nginx -t'
             }           
         }
+        // Restarting Reverse Proxy Service
         stage("Restarting Reverse Proxy Service") {
             steps {
+                echo 'restarting service nginx'
                 sh 'service nginx restart'
             }           
         }
