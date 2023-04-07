@@ -55,7 +55,7 @@ pipeline {
                 stage('Config Service Upstream & Url Path') {
                     environment {
                         API_CONF_PATH="/home/reverse_proxy/api_conf.d/"
-                        API_CONF_UPSTREAM_PATH="/home/reverse_proxy/api_upstream.d"
+                        API_CONF_UPSTREAM_PATH="/home/reverse_proxy/api_upstream.d/"
                     }
                     steps {
                         echo "Change permission file copy_api_conf.sh"
