@@ -40,7 +40,7 @@ pipeline {
                         sh 'ls'
                         echo "Current workspace is ${env.WORKSPACE}"
                         script {
-                           if (fileExists(${env.WORKSPACE}+'/api_upstream.d')) {
+                           if (fileExists("${env.WORKSPACE}"+'/api_upstream.d')) {
                                 return true
                             }else {
                                 return false
