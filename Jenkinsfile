@@ -39,6 +39,12 @@ pipeline {
                         echo "Config Service Upstream"
                     }
                 }
+                // Config Service URL Path
+                stage('Config Service URL Path') {
+                    steps {
+                        echo "Config Service URL Path"
+                    }
+                }
             }
         }
     }
