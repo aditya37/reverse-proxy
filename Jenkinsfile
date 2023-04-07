@@ -41,7 +41,7 @@ pipeline {
                         echo "Current workspace is ${env.WORKSPACE}"
                         script {
                            if (fileExists("${env.WORKSPACE}"+'/api_upstream.d')) {
-                                return true
+                                echo "Exist"
                             }else {
                                 return false
                             }
