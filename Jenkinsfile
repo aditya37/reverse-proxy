@@ -31,11 +31,15 @@ pipeline {
             }
         }
         // stage copy upstream
-        stage("Configuring Service Upstream") {
-            echo 'configure upstream'
-        }
-        stage("Configuring Service URL") {
-            echo 'Configuring Service URL'
+        stage("Configuring File Reverse Proxy") {
+            stages {
+                // Config Service Upstream
+                stage('Config Service Upstream') {
+                    steps {
+                        echo "Config Service Upstream"
+                    }
+                }
+            }
         }
     }
 }
