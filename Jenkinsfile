@@ -30,7 +30,7 @@ pipeline {
                 }
             }
         }
-        // stage copy upstream
+        // stage copy upstream & Service URL path
         stage("Configuring File Reverse Proxy") {
             stages {
                 // Config Service Upstream
@@ -46,6 +46,11 @@ pipeline {
                     }
                 }
             }
+        }
+        stage("Testing Reverse Proxy Config") {
+            steps {
+                sh '/usr/sbin/nginx -t'
+            }           
         }
     }
 }
