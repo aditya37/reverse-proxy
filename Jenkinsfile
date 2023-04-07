@@ -50,6 +50,7 @@ pipeline {
 
                     }
                 }
+                
                 // Config Service Upstream
                 stage('Config Service Upstream & Url Path') {
                     steps {
