@@ -1,0 +1,3 @@
+Declare your service in here....
+format wording upstream file:
+squadname_service_name.conf
