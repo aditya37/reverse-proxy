@@ -52,5 +52,10 @@ pipeline {
                 sh '/usr/sbin/nginx -t'
             }           
         }
+        stage("Restarting Reverse Proxy Service") {
+            steps {
+                sh 'service nginx restart'
+            }           
+        }
     }
 }
