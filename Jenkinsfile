@@ -71,7 +71,7 @@ pipeline {
                 }
                 stage("Config gRPC Upstream") {
                     environment {
-                        GRPC_CONF_UPSTREAM_PATH="/home/reverse_proxy/api_upstream.d/"
+                        GRPC_CONF_UPSTREAM_PATH="/home/reverse_proxy/grpc_upstream.d/"
                     }
                     steps {
                         echo "Change permission file copy_grcp_upstream_conf.sh"
