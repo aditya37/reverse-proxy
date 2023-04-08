@@ -39,19 +39,20 @@ pipeline {
                         echo "Checking Config Directory"  
                         script {
                            if (
-                               fileExists("${env.WORKSPACE}"+'/api_upstream.d') || fileExists("${env.WORKSPACE}"+'/api_conf.d')
+                               fileExists("${env.WORKSPACE}"+'/api_upstream.d') || 
+                               fileExists("${env.WORKSPACE}"+'/api_conf.d') ||
+                               fileExists("${env.WORKSPACE}"+'/grpc_upstream.d')
                             ) {
                                 return true
                             }else {
-                                error "Folder api_upstream.d or api_conf.d not found"
-                                echo "Folder api_upstream.d or api_conf.d not found"
+                                error "Folder api_upstream.d or api_conf.d,grpc_upstream.d not found"
+                                echo "Folder api_upstream.d or api_conf.d,grpc_upstream.d not found"
                             }
                         }
 
                     }
                 }
-                // TODO: Config this...
-                // Config Service Upstream
+                // Config Service Upstream (rest api)
                 stage('Config Service Upstream & Url Path') {
                     environment {
                         API_CONF_PATH="/home/reverse_proxy/api_conf.d/"
@@ -64,9 +65,19 @@ pipeline {
                         sh "./copy_api_conf.sh $API_CONF_PATH"
                         echo "Change permission file copy_api_upstream_conf.sh"
                         sh 'chmod +x copy_api_upstream_conf.sh'
-                        echo "Config Service URL Path"
+                        echo "Config Service Upstream"
                         sh "./copy_api_upstream_conf.sh $API_CONF_UPSTREAM_PATH"
-                        sh 'ls'
+                    }
+                }
+                stage("Config gRPC Upstream") {
+                    environment {
+                        GRPC_CONF_UPSTREAM_PATH="/home/reverse_proxy/api_upstream.d/"
+                    }
+                    steps {
+                        echo "Change permission file copy_grcp_upstream_conf.sh"
+                        sh 'chmod +x copy_grpc_upstream_conf.sh'
+                        echo "Config gRPC Service Upstream"
+                        sh "./copy_grpc_upstream_conf.sh $GRPC_CONF_UPSTREAM_PATH"
                     }
                 }
             }
